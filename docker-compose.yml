@@ -3,10 +3,14 @@ version: '2'
 services:
   bind:
     restart: always
-    image: sameersbn/bind:9.9.5-20161106
+    image: chaznet/amd64-ubuntu14-bind:9.10.3
+    build: .
     ports:
     - "53:53/udp"
     - "53:53/tcp"
     - "10000:10000/tcp"
     volumes:
     - /srv/docker/bind:/data
+    env_file: .env
+    environment:
+      WEBMIN_ENABLED: "true"
