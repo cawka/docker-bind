@@ -1,4 +1,4 @@
-version: '1'
+version: '3.3'
 
 services:
   bind:
@@ -6,7 +6,7 @@ services:
     image: cawka/bind9:v1
     build: .
     ports:
-    - "53:53/udp"
-    - "53:53/tcp"
+      - "53:53/udp"
+      - "53:53/tcp"
     volumes:
-    - /export/dns-zones:/data
+      - /export/dns-zones:/data
