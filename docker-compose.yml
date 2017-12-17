@@ -1,4 +1,4 @@
-version: '3.3'
+version: '2.1'
 
 services:
   bind:
@@ -8,5 +8,21 @@ services:
     ports:
       - "53:53/udp"
       - "53:53/tcp"
+    networks:
+        irl:
+            ipv4_address: 131.179.196.160
+            ipv6_address: 2607:f010:3f9::10:1
     volumes:
       - /export/dns-zones:/data
+
+networks:
+    irl:
+        enable_ipv6: true
+        driver: macvlan
+        driver_opts:
+            parent: eth0
+        ipam:
+            config:
+                - subnet: 131.179.196.0/24
+                - subnet: 2607:f010:3f9::/64
+                  gateway: 2607:f010:3f9::1
